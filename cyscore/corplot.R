@@ -5,9 +5,7 @@ ms=c("mlr","rf")
 nm=length(ms) # Number of models.
 tsts=c(195,201,592)
 ns=length(tsts) # Number of benchmarks.
-#pdf("cor.pdf",width=5*ns,height=5*nm)
-setEPS()
-postscript("cor.eps",width=5*ns,height=5*nm)
+pdf("cor.pdf",width=5*ns,height=5*nm)
 layout(matrix(1:(nm*ns),2,ns,byrow=T))
 par(cex.lab=1.4,cex.axis=1.4,cex.main=1.4)
 for (mi in 1:2)
