@@ -146,7 +146,7 @@ ntst=2
 ps=c(2007,2012)
 for (trn in 1:4)
 {
-	cat(sprintf("set$s/pdbbind-%s-trn-$trn-$c-boxplot.tiff\n",ps[trn]))
+	cat(sprintf("set$s/pdbbind-$v-trn-%d-$c-boxplot.tiff\n",trn))
 	for (s in 1:ns)
 	{
 		cat(sprintf("set%d\n",s))
@@ -156,7 +156,7 @@ for (trn in 1:4)
 		{
 			for (m in 1:nm)
 			{
-				tst_stat=read.csv(sprintf("model%d/set%s/pdbbind-%s-trn-%s-tst-%s-stat.csv",m,s,ifelse(m==1,2007,ps[trn]),ifelse(m==1,1,trn),tst))
+				tst_stat=read.csv(sprintf("model%d/set%s/pdbbind-%s-trn-%s-tst-%s-stat.csv",m,s,ifelse(m==1,2007,ps[s]),ifelse(m==1,1,trn),tst))
 				for (ci in 1:nc)
 				{
 					box[m,tst,ci]=tst_stat[statc[ci]]
@@ -167,7 +167,7 @@ for (trn in 1:4)
 		for (ci in 1:nc)
 		{
 			ylim=c(min(med[,,ci],na.rm=T),max(med[,,ci],na.rm=T))
-			tiff(sprintf("set%d/pdbbind-%s-trn-%s-%s-boxplot.tiff",s,ps[trn],trn,statc[ci]),compression="lzw")
+			tiff(sprintf("set%d/pdbbind-%s-trn-%s-%s-boxplot.tiff",s,ps[s],trn,statc[ci]),compression="lzw")
 			par(cex.lab=1.3,cex.axis=1.3,cex.main=1.3)
 			for (m in 1:nm)
 			{
@@ -179,7 +179,7 @@ for (trn in 1:4)
 			axis(1,at=1:ntst,labels=c("crystal","docked"))
 			axis(2)
 			dev.off()
-			tiff(sprintf("set%d/pdbbind-%s-trn-%s-%s-median.tiff",s,ps[trn],trn,statc[ci]),compression="lzw")
+			tiff(sprintf("set%d/pdbbind-%s-trn-%s-%s-median.tiff",s,ps[s],trn,statc[ci]),compression="lzw")
 			par(cex.lab=1.3,cex.axis=1.3,cex.main=1.3)
 			for (m in 1:nm)
 			{
