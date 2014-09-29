@@ -144,12 +144,11 @@ for (trn in 1:6)
 # Plot figures with y axis being the performance measure, x axis being the test schemes, and legends being the models.
 ntst=2
 ps=c(2007,2012)
-for (trn in 1:4)
+for (s in 1:ns)
 {
-	cat(sprintf("set$s/pdbbind-$v-trn-%d-$c-boxplot.tiff\n",trn))
-	for (s in 1:ns)
+	cat(sprintf("set%d\n",s))
+	for (trn in 1:4)
 	{
-		cat(sprintf("set%d\n",s))
 		box=array(list(),dim=c(nm,ntst,nc))
 		med=array(dim=c(nm,ntst,nc))
 		for (tst in 1:ntst)
@@ -192,5 +191,47 @@ for (trn in 1:4)
 			axis(2)
 			dev.off()
 		}
+	}
+}
+# Plot figures with y axis being the performance measure, x axis being the combination of training and test schemes, and legends being the models.
+ntrn=2
+ntrntst=ntrn*ntst
+for (s in 1:ns)
+{
+	cat(sprintf("set%d\n",s))
+	box=array(list(),dim=c(nm,ntrntst,nc))
+	med=array(dim=c(nm,ntrntst,nc))
+	labels=c()
+	for (trn in 1:ntrn)
+	{
+		for (tst in 1:ntst)
+		{
+			for (m in 1:nm)
+			{
+				tst_stat=read.csv(sprintf("model%d/set%s/pdbbind-%s-trn-%s-tst-%s-stat.csv",m,s,ifelse(m==1,2007,ps[s]),ifelse(m==1,1,trn),tst))
+				for (ci in 1:nc)
+				{
+					box[m,(trn-1)*2+tst,ci]=tst_stat[statc[ci]]
+					med[m,(trn-1)*2+tst,ci]=median(tst_stat[statc[ci]][,])
+				}
+			}
+			labels=c(labels,sprintf("trn-%s-tst-%s",trn,tst))
+		}
+	}
+	for (ci in 1:nc)
+	{
+		ylim=c(min(med[,,ci],na.rm=T),max(med[,,ci],na.rm=T))
+		pdf(sprintf("set%d/pdbbind-%s-%s-boxplot.pdf",s,ps[s],statc[ci]))
+		par(cex.lab=1.3,cex.axis=1.3,cex.main=1.3)
+		for (m in 1:nm)
+		{
+			boxplot(box[m,,ci],ylim=ylim,xaxt="n",yaxt="n",xlab="",ylab="",range=0,border=m)
+			par(new=T)
+		}
+		title(main=sprintf("Boxplot of %s",statx[ci]),ylab=statx[ci])
+		legend(ifelse(ci<=2,"topright","bottomright"),title="Models",legend=1:nm,fill=1:nm,cex=1.3)
+		axis(1,at=1:ntrntst,labels=labels)
+		axis(2)
+		dev.off()
 	}
 }
