@@ -104,7 +104,7 @@ for (s in 1:ns)
 	}
 	for (ci in 1:nc)
 	{
-		legend.x = ifelse(ci<=2,ifelse(ci==1,"right","bottomleft"),"topleft")
+		legend.x = ifelse(ci<=2,"bottomleft","topleft")
 		tiff(sprintf("set%d/tst-%s-boxplot.tiff",s,statc[ci]),compression="lzw")
 		par(cex.lab=1.3,cex.axis=1.3,cex.main=1.3)
 		ylim=c(min(med[,,ci]),max(med[,,ci]))
