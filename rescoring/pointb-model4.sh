@@ -1,4 +1,4 @@
-for m in 4; do
+for m in 3 4; do
 	echo model$m
 	cd model$m
 	for s in 2; do

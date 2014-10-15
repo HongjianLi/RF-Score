@@ -2,7 +2,7 @@ for t in $(seq 0 9); do
 	shuf -i 1-382 > pointb-$t.csv
 done
 n=(77 77 76 76 76)
-for m in 2 4; do
+for m in 2 3 4; do
 	echo model$m
 	cd model$m
 	for s in 2; do
