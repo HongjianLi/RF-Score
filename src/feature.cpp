@@ -51,7 +51,7 @@ vector<float> feature(const receptor& rec, const ligand& lig, const size_t model
 	}
 	else
 	{
-		v.back() = 1 / (1 + /*0.05846f **/ (lig.num_active_torsions + 0.5f * lig.num_inactive_torsions)); // idock daemon uses lig.flexibility_penalty as the last feature, so wNrot should be uncommented.
+		v.back() = 1 / (1 + /*0.05846f **/ (lig.num_active_torsions + 0.5f * lig.num_inactive_torsions)); // Both idock executable and daemon use lig.flexibility_penalty as the last feature, so wNrot should be uncommented.
 	}
 //	sf.weight(v.data() + 36); // The 5 Vina terms are now weighted.
 	return v;
