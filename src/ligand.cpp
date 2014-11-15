@@ -48,8 +48,8 @@ void ligand::load(ifstream& ifs)
 			// Parse the line.
 			atom a(line);
 
-			// Skip unsupported atom types.
-			if (a.ad_unsupported()) continue;
+			// Harmonize a unsupported atom type to carbon.
+			if (a.ad_unsupported()) a.ad = 2;
 
 			// Skip non-polar hydrogens.
 			if (a.is_nonpolar_hydrogen()) continue;
