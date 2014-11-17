@@ -1,11 +1,11 @@
 #!/usr/bin/env Rscript
 nm=4 # Number of models.
-ns=2 # Number of datasets.
-nv=4 # Number of training sets per dataset.
 nc=5 # Number of performance measures.
-setv=array(dim=c(ns,nv))
-setv[1,]=c(2004,2007,2010,2013)
-setv[2,]=c(2002,2007,2010,2012)
+ns=2 # Number of datasets.
+nva=c(4,5) # Number of training sets per dataset.
+setv=array(dim=c(ns,max(nva)))
+setv[1,]=c(2004,2007,2010,2013,0)
+setv[2,]=c(2002,2007,2010,2012,2014)
 statc=c("rmse","sdev","pcor","scor","kcor")
 statx=c("RMSE","SD","Rp","Rs","Rk")
 # Plot figures with y axis being the performance measure and x axis being the numbers of training complexes.
@@ -16,6 +16,7 @@ for (m in 2:5)
 	for (s in 1:ns)
 	{
 		cat(sprintf("set%d\n",s))
+		nv=nva[s]
 		ntrn=array(dim=nv)
 		box=array(list(),dim=c(nc,nv))
 		med=array(dim=c(nc,nv))
@@ -50,6 +51,7 @@ cat(sprintf("set$s/pdbbind-$v-tst-$c-boxplot.tiff\n"))
 for (s in 1:ns)
 {
 	cat(sprintf("set%d\n",s))
+	nv=nva[s]
 	for (vi in 1:nv)
 	{
 		v=setv[s,vi]
@@ -84,6 +86,7 @@ cat(sprintf("set$s/tst-$c-boxplot.tiff\n"))
 for (s in 1:ns)
 {
 	cat(sprintf("set%d\n",s))
+	nv=nva[s]
 	ntrn=array(dim=nv)
 	box=array(list(),dim=c(nm,nv,nc))
 	med=array(dim=c(nm,nv,nc))

@@ -1,4 +1,5 @@
 pdbbind=~/PDBbind
+nv=(0 4 5)
 declare -A v
 v[1,0]=2007
 v[1,1]=2004
@@ -10,6 +11,7 @@ v[2,1]=2002
 v[2,2]=2007
 v[2,3]=2010
 v[2,4]=2012
+v[2,5]=2014
 for m in 2 3 4; do
 	cd model$m
 	echo model$m
@@ -19,7 +21,7 @@ for m in 2 3 4; do
 	for s in 1 2; do
 		cd set$s
 		echo set$s
-		for vi in {0..4}; do
+		for vi in $(seq 0 ${nv[$s]}); do
 			if [[ $vi == 0 ]]; then
 				echo tst-yxi.csv
 				rf-prepare $pdbbind/v${v[$s,$vi]}/rescoring-1-set-$s-tst-iy.csv $m | cut -d, -f1-$p,$q- | sed 's/_inter//g' > tst-yxi.csv
@@ -38,7 +40,7 @@ for m in 5; do
 	for s in 1 2; do
 		cd set$s
 		echo set$s
-		for vi in {0..4}; do
+		for vi in $(seq 0 ${nv[$s]}); do
 			if [[ $vi == 0 ]]; then
 				echo tst-yxi.csv
 				cut -d, -f1-6,8 ../../model3/set$s/tst-yxi.csv > tst-yxi.csv
