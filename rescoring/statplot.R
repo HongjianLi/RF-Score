@@ -1,8 +1,8 @@
 #!/usr/bin/env Rscript
 nm=4 # Number of models.
 nc=5 # Number of performance measures.
-ns=2 # Number of datasets.
 nva=c(4,5,2) # Number of training sets per dataset.
+ns=length(nva) # Number of datasets.
 setv=array(dim=c(ns,max(nva)))
 setv[1,]=c(2004,2007,2010,2013,0)
 setv[2,]=c(2002,2007,2010,2012,2014)
