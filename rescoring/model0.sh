@@ -1,7 +1,7 @@
 for m in 0; do
 	echo model$m
 	cd model$m
-	for s in 1 2; do
+	for s in 1 2 3; do
 		echo set$s
 		cd set$s
 		for v in $(ls -1 pdbbind-*-trn-yxi.csv | cut -d- -f2); do

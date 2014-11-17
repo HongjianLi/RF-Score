@@ -1,5 +1,5 @@
 pdbbind=~/PDBbind
-nv=(0 4 5)
+nv=(0 4 5 2)
 declare -A v
 v[1,0]=2007
 v[1,1]=2004
@@ -12,13 +12,16 @@ v[2,2]=2007
 v[2,3]=2010
 v[2,4]=2012
 v[2,5]=2014
+v[3,0]=2013
+v[3,1]=2013
+v[3,2]=2014
 for m in 2 3 4; do
 	cd model$m
 	echo model$m
 	[[ $m == 4 ]] && p=36 || p=0
 	p=$((p+6))
 	q=$((p+6))
-	for s in 1 2; do
+	for s in 1 2 3; do
 		cd set$s
 		echo set$s
 		for vi in $(seq 0 ${nv[$s]}); do
@@ -37,7 +40,7 @@ done
 for m in 5; do
 	cd model$m
 	echo model$m
-	for s in 1 2; do
+	for s in 1 2 3; do
 		cd set$s
 		echo set$s
 		for vi in $(seq 0 ${nv[$s]}); do

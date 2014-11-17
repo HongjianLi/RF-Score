@@ -2,10 +2,11 @@
 nm=4 # Number of models.
 nc=5 # Number of performance measures.
 ns=2 # Number of datasets.
-nva=c(4,5) # Number of training sets per dataset.
+nva=c(4,5,2) # Number of training sets per dataset.
 setv=array(dim=c(ns,max(nva)))
 setv[1,]=c(2004,2007,2010,2013,0)
 setv[2,]=c(2002,2007,2010,2012,2014)
+setv[3,]=c(2013,2014,0,0,0)
 statc=c("rmse","sdev","pcor","scor","kcor")
 statx=c("RMSE","SD","Rp","Rs","Rk")
 # Plot figures with y axis being the performance measure and x axis being the numbers of training complexes.

@@ -1,7 +1,7 @@
 for m in 3 4 5; do
 	echo model$m
 	cd model$m
-	for s in 1 2; do
+	for s in 1 2 3; do
 		echo set$s
 		cd set$s
 		echo v,w,n,rmse,sdev,pcor,scor,kcor > tst-stat.csv
