@@ -1,4 +1,5 @@
 pdbbind=~/PDBbind
+nva=(0 4 5)
 declare -A v
 v[1,0]=2007
 v[1,1]=2004
@@ -10,11 +11,13 @@ v[2,1]=2002
 v[2,2]=2007
 v[2,3]=2010
 v[2,4]=2012
-t=(tst trn trn trn trn)
+v[2,5]=2014
+t=(tst trn trn trn trn trn)
 for s in 1 2; do
 	echo set$s
-	for v0 in {0..3}; do
-	for v1 in $(seq $((v0+1)) 4); do
+	nv=${nva[$s]}
+	for v0 in $(seq 0 $((nv-1))); do
+	for v1 in $(seq $((v0+1)) $nv); do
 		echo "|$v0 ∩ $v1| = "$(cut -d, -f1 $pdbbind/v${v[$s,$v0]}/rescoring-1-set-$s-${t[v0]}-iy.csv $pdbbind/v${v[$s,$v1]}/rescoring-1-set-$s-${t[v1]}-iy.csv | sort | uniq -d | wc -l)
 	done
 	done
