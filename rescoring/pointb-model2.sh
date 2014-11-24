@@ -15,7 +15,7 @@ for m in 2; do
 					for w in $(seq 0.005 0.001 0.020); do
 						echo $w
 						cd $w
-						../../../mlrtest.R $v $w tst-$t-$p
+						../../../model2test.R $v $w tst-$t-$p
 						../../../iypplot.R $v tst-$t-$p
 						cd ..
 						echo -n $w, >> pdbbind-$v-tst-$t-$p-stat.csv

@@ -106,8 +106,8 @@ For script files, their functions and execution orders are as follows:
 * `model2.sh` trains and tests model 2 with a grid search of wNrot in [0.005 to 0.020] with a step size of 0.001, and generates model2/set{1,2}/tst-stat.csv.
 * `model3.sh` trains and tests models 3 and 4 with 10 seeds, and generates model{3,4}/set{1,2}/tst-stat.csv.
 * `maxerr.sh` finds the top 10 complexes with the largest absolute error between measured pKd and model 1 pKd and between measured pKd and model 4 pKd. Its output is saved to maxerr.csv.
-* `mlrtrain.R` trains model 2 on model2/set{1,2}/$w/pdbbind-$v-trn-yxi.csv using multiple linear regression, and writes the intercept and coefficients to model2/set{1,2}/$w/pdbbind-$v.csv.
-* `mlrtest.R` tests model 2 on model2/set{1,2}/tst-yxi.csv, and writes the statistics to model2/set{1,2}/$w/pdbbind-$v-tst-stat.csv.
+* `model2train.R` trains model 2 on model2/set{1,2}/$w/pdbbind-$v-trn-yxi.csv using multiple linear regression, and writes the intercept and coefficients to model2/set{1,2}/$w/pdbbind-$v.csv.
+* `model2test.R` tests model 2 on model2/set{1,2}/tst-yxi.csv, and writes the statistics to model2/set{1,2}/$w/pdbbind-$v-tst-stat.csv.
 * `couplelm.R` reads pdbbind-$v-trn-iyp.csv and writes pdbbind-$v-trn-coef.csv.
 * `iypplot.R` writes models{1,2,3,4,5}/set{1,2}/$w/pdbbind-$v-{trn,tst}-stat.csv and plots models{1,2,3,4,5}/set{1,2}/$w/pdbbind-$v-{trn,tst}-yp.tiff.
 * `varImpPlot.R` plots models{3,4,5}/set{1,2}/$w/pdbbind-$v-trn-varimpplot.tiff.

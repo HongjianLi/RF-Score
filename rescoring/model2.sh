@@ -13,9 +13,9 @@ for m in 2; do
 				echo $w
 				mkdir -p $w
 				cd $w
-				../../../mlrtrain.R $v $w
-				../../../mlrtest.R $v $w trn
-				../../../mlrtest.R $v $w tst
+				../../../model2train.R $v $w
+				../../../model2test.R $v $w trn
+				../../../model2test.R $v $w tst
 				../../../iypplot.R $v trn
 				../../../iypplot.R $v tst
 				cd ..
