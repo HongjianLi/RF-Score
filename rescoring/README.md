@@ -1,6 +1,6 @@
 # Rescoring models
 
-Several models for rescoring protein-ligand binding affinity are evaluated and compared in terms of prediction performance on two datasets, both of which consist of four training sets and one test set. For each of the two datasets, the test set has no overlapping complexes in either of the four training sets.
+Several models for rescoring protein-ligand binding affinity are evaluated and compared in terms of prediction performance on four datasets, each of which consists of some training sets and one test set. For each of the datasets, the test set has no overlapping complexes in any of the training sets.
 
 ## Models
 
@@ -28,7 +28,7 @@ Model 5 is the same as model 3, except that it uses 5 Vina features, i.e. gauss1
 
 ### Dataset 1
 
-The test set 0) and the four training sets 1), 2), 3), 4) are as follows:
+The test set 0) and the training sets 1), 2), 3), 4) are as follows:
 
 0) PDBbind v2007 core set (N = 195). This test set is the one used in [DOI: 10.1021/ci9000053]. Therefore it has N = 195.
 
@@ -55,7 +55,7 @@ Their intersections are as follows:
 
 ### Dataset 2
 
-The test set 0) and the four training sets 1), 2), 3), 4) are as follows:
+The test set 0) and the training sets 1), 2), 3), 4), 5) are as follows:
 
 0) PDBbind v2013 refined set (N = 2959) minus PDBbind v2012 refined set (N = 2897). Both sets have 2576 complexes in common. The 3rv4 protein consists of two Cs atoms which Vina does not support. Therefore this test set has N = 2959 - 2576 - 1 = 382 complexes.
 
@@ -67,18 +67,53 @@ The test set 0) and the four training sets 1), 2), 3), 4) are as follows:
 
 4) PDBbind v2012 refined set (N = 2897). This training set has N = 2897 complexes.
 
+5) PDBbind v2014 refined set (N = 3446) minus the test set 0). The 4bps and 2iw4 proteins fail PDB-to-PDBQT conversion by prepare_receptor4.py. Both sets have 368 complexes in common. Therefore this training set has N = 3446 - 2 - 368 = 3076 complexes.
+
 Their intersections are as follows:
 
 * |0 ∩ 1| = 0
 * |0 ∩ 2| = 0
 * |0 ∩ 3| = 0
 * |0 ∩ 4| = 0
+* |0 ∩ 5| = 0
 * |1 ∩ 2| = 592
 * |1 ∩ 3| = 536
 * |1 ∩ 4| = 565
+* |1 ∩ 5| = 527
 * |2 ∩ 3| = 1178
 * |2 ∩ 4| = 1173
+* |2 ∩ 5| = 1061
 * |3 ∩ 4| = 2032
+* |3 ∩ 5| = 1814
+* |4 ∩ 5| = 2529
+
+### Dataset 3
+
+The test set 0) and the training sets 1), 2) are as follows:
+
+0) PDBbind v2013 core set (N = 195).
+
+1) PDBbind v2013 refined set (N = 2959) minus PDBbind v2013 core set (N = 195). Therefore this training set has N = 2959 - 195 = 2764 complexes.
+
+2) PDBbind v2014 refined set (N = 3446) minus PDBbind v2013 core set (N = 195). The 4bps and 2iw4 proteins fail PDB-to-PDBQT conversion by prepare_receptor4.py. Both sets have 195 complexes in common. Therefore this training set has N = 3446 - 2 - 195 = 3249 complexes.
+
+Their intersections are as follows:
+
+* |0 ∩ 1| = 0
+* |0 ∩ 2| = 0
+* |1 ∩ 2| = 2703
+
+### Dataset 4
+
+The test set 0) and the training set 1) are as follows:
+
+0) PDBbind v2014 refined set (N = 3446) minus PDBbind v2013 refined set (N = 2959). The 3rv4 protein consists of two Cs atoms which Vina does not support. Both sets have 2898 complexes in common. Therefore this test set has N = 3446 - 2 - 2898 - 1 = 546 complexes.
+
+1) PDBbind v2013 refined set (N = 2959). This training set has N = 2897 complexes.
+
+Their intersections are as follows:
+
+* |0 ∩ 1| = 0
 
 ## Files
 
