@@ -20,9 +20,9 @@ for m in 2; do
 					echo $w
 					mkdir -p $w
 					cd $w
-					../../../mlrtrain.R $v $trn $w
+					../../../model2train.R $v $trn $w
 					for tst in $tsts; do
-						../../../mlrtest.R $v $trn $tst $w
+						../../../model2test.R $v $trn $tst $w
 						cut -d, -f2 ../../../set3/tst-$tst-iy.csv | paste -d, - pdbbind-$v-trn-$trn-tst-$tst-p.csv | rf-stat > pdbbind-$v-trn-$trn-tst-$tst-stat.csv
 						rm pdbbind-$v-trn-$trn-tst-$tst-p.csv
 					done
