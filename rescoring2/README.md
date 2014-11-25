@@ -149,13 +149,13 @@ For script files, their functions and execution orders are as follows:
 * `model3.sh` trains and tests models 3 and 4 with 10 seeds, and generates model{3,4}/set{1,2}/tst-stat.csv.
 * `maxerr.sh` finds the top 10 complexes with the largest absolute error between measured pKd and model 1 pKd and between measured pKd and model 4 pKd in test schemes 1 and 2. Its output is saved to maxerr.csv.
 * `rmsd.sh` computes RMSD relevant statistics.
-* `mlrtrain.R` trains model 2 on model2/set{1,2}/$w/pdbbind-$v-trn-{1,2,3,4,5,6}-yxi.csv using multiple linear regression, and writes the intercept and coefficients to model2/set{1,2}/$w/pdbbind-$v-trn-{1,2,3,4,5,6}-coef.csv.
-* `mlrtest.R` tests model 2 on model2/set{1,2}/tst-{1,2}-yxi.csv, and writes the statistics to model2/set{1,2}/$w/pdbbind-$v-trn-{1,2,3,4,5,6}-tst-{1,2}-stat.csv.
+* `model2train.R` trains model 2 on model2/set{1,2}/$w/pdbbind-$v-trn-{1,2,3,4,5,6}-yxi.csv using multiple linear regression, and writes the intercept and coefficients to model2/set{1,2}/$w/pdbbind-$v-trn-{1,2,3,4,5,6}-coef.csv.
+* `model2test.R` tests model 2 on model2/set{1,2}/tst-{1,2}-yxi.csv, and writes the statistics to model2/set{1,2}/$w/pdbbind-$v-trn-{1,2,3,4,5,6}-tst-{1,2}-stat.csv.
 * `iypplot.R` writes models{1,2,3,4}/set{1,2}/$w/pdbbind-$v-trn-{1,2,3,4,5,6}-tst-{1,2}-{iyp,stat}.csv and plots models{1,2,3,4}/set{1,2}/$w/pdbbind-$v-trn-{1,2,3,4,5,6}-tst-{1,2}-yp.tiff.
 * `idpplot.R` plots models{1,2,3,4}/set{1,2}/$w/pdbbind-$v-trn-{1,2,3,4,5,6}-tst-{1,2}-dp.tiff.
 * `varImpPlot.R` plots models{3,4}/set{1,2}/$w/pdbbind-$v-trn-{1,2,3,4,5,6}-varimpplot.tiff.
 * `statplot.R` plots model{2,3,4}/set{1,2}/trn-{1,2,3,4,5,6}-tst-{1,2,5,6}-{rmse,sdev,pcor,scor,kcor}-{boxplot,median}.tiff, set{1,2}/pdbbind-$v-trn-{1,2,3,4,5,6}-tst-{1,2,5,6}-{rmse,sdev,pcor,scor,kcor}-{boxplot,median}.tiff, set{1,2}/trn-{1,2,3,4,5,6}-tst-{1,2,5,6}-{rmse,sdev,pcor,scor,kcor}-{boxplot,median}.tiff, and set{1,2}/pdbbind-2007-trn-{1,2,3,4}-{rmse,sdev,pcor,scor,kcor}-{boxplot,median}.tiff. This R script is self contained and requires no command line arguments. It is not called in any bash scripts and therefore should be called in the end.
-* `mlrtestp.R` tests model 2 on docked poses, and writes predicted pKd values to standard output. This R script is called by `rmsd.sh`.
+* `model2testp.R` tests model 2 on docked poses, and writes predicted pKd values to standard output. This R script is called by `rmsd.sh`.
 
 ## Results
 

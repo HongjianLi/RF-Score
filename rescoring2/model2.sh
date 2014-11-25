@@ -21,11 +21,11 @@ for m in 2; do
 					echo $w
 					mkdir -p $w
 					cd $w
-					../../../mlrtrain.R $v $trn $w
-					../../../mlrtest.R $v $trn 0 $w trn
+					../../../model2train.R $v $trn $w
+					../../../model2test.R $v $trn 0 $w trn
 					tail -n +2 pdbbind-$v-trn-$trn-trn-$trn-iyp.csv | cut -d, -f2,3 | rf-stat > pdbbind-$v-trn-$trn-trn-$trn-stat.csv
 					for tst in $tsts; do
-						../../../mlrtest.R $v $trn $tst $w tst
+						../../../model2test.R $v $trn $tst $w tst
 						../../../iypplot.R $v $trn $tst
 					done
 					if [[ $trn -lt 5 ]]; then

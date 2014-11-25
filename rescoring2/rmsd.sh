@@ -43,7 +43,7 @@ for s in 1 2; do
 				rf-extract $pvc/${c}_protein.pdbqt $pvc/out/${c}_ligand_ligand_${i}.pdbqt $m | tail -n +2 >> /tmp/x$m.csv
 			done
 		done
-		cat /tmp/x2.csv | ./mlrtestp.R model2/set$s/${w[2]}/pdbbind-2007-trn-1-coef.csv ${w[2]} > /tmp/p2.csv
+		cat /tmp/x2.csv | ./model2testp.R model2/set$s/${w[2]}/pdbbind-2007-trn-1-coef.csv ${w[2]} > /tmp/p2.csv
 		tail -n +2 /tmp/x3.csv | rf-predict model3/set$s/${w[3]}/pdbbind-2007-trn-1.rf > /tmp/p3.csv
 		tail -n +2 /tmp/x4.csv | rf-predict model4/set$s/${w[4]}/pdbbind-2007-trn-1.rf > /tmp/p4.csv
 		i=0
