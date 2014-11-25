@@ -5,8 +5,7 @@ trn=args[2]
 tst=args[3]
 d=read.csv(sprintf("pdbbind-%s-trn-%s-tst-%s-iyp.csv",v,trn,tst))
 n=nrow(d) # Number of samples.
-xylim=c(0,14)
-if (n == 382) xylim=c(0,12)
+xylim=c(0,ifelse(sort(d$pbindaff,decreasing=T)[1]<12,12,14))
 rmse=sqrt(sum((d["predicted"]-d["pbindaff"])^2)/n)
 sdev=summary(lm(pbindaff~predicted,d))$sigma
 pcor=cor(d["predicted"], d["pbindaff"], method="pearson")
