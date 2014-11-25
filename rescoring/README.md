@@ -4,6 +4,10 @@ Several models for rescoring protein-ligand binding affinity are evaluated and c
 
 ## Models
 
+### Model 0 is a linear regression using number of heavy atoms (NHA) or molecular weight (MWT) of the ligand as the only feature.
+
+Model 0
+
 ### Model 1
 
 Model 1 is the Vina score, whose parameters are tuned by nonlinear optimization on PDBbind v2007 refined set (N = 1300). Its functional form is e = (w1*gauss1 + w2*gauss2 + w3*repulsion + w4*hydrophobic + w5*hydrogenbonding) / (1 + w6*Nrot), where e is free energy in kcal/mol and w = [-0.035579,-0.005156,0.840245,-0.035069,-0.587439,0.05846] and cutoff = 8A. Vina identifies inactive torsions (i.e. -OH, -NH2, -CH3) and active torsions (i.e. other than the 3 types), and implements Nrot = N(ActTors) + 0.5*N(InactTors), i.e. active torsions are counted as 1 while inactive torsions are counted as 0.5. The free energy in kcal/mol is converted to binding affinity in pKd by multiplying -0.73349480509.
@@ -117,7 +121,7 @@ Their intersections are as follows:
 
 ## Files
 
-The folders and files are organized hierarchically. Model-specific files are in the model{1,2,3,4} folders. Cross-model files are in the set{1,2} folders.
+The folders and files are organized hierarchically. Model-specific files are in the model{1,2,3,4} folders. Cross-model files are in the set{1,2,3} folders.
 
 For data files, their nomenclature are as follows:
 
@@ -134,18 +138,21 @@ For example,
 
 For script files, their functions and execution orders are as follows:
 
-* `duplicates.sh` computes the number of duplicate complexes between training sets and test set and among training sets in each of the 2 datasets.
-* `model1prepare.sh` generates model1/set{1,2}/pdbbind-2007-{trn,tst}-iyp.csv.
-* `model4prepare.sh` generates model{2,3,4,5}/set{1,2}/{tst-yxi.csv,pdbbind-$v-trn-yxi.csv}.
-* `model1.sh` tests model 1 and generates model1/set{1,2}/pdbbind-2007-{trn,tst}-stat.csv.
-* `model2.sh` trains and tests model 2 with a grid search of wNrot in [0.005 to 0.020] with a step size of 0.001, and generates model2/set{1,2}/tst-stat.csv.
-* `model3.sh` trains and tests models 3 and 4 with 10 seeds, and generates model{3,4}/set{1,2}/tst-stat.csv.
+* `duplicates.sh` computes the number of duplicate complexes between training sets and test set and among training sets in each of the datasets.
+* `model0prepare.sh` generates model0/set{1,2,3}/{tst-yxi,pdbbind-$v-trn-yxi}.csv.
+* `model1prepare.sh` generates model1/set{1,2,3}/pdbbind-2007-{trn,tst}-iyp.csv.
+* `model4prepare.sh` generates model{2,3,4,5}/set{1,2,3}/{tst-yxi,pdbbind-$v-trn-yxi}.csv.
+* `model0.sh` trains and tests model 0, and generates model0/set{1,2,3}/$w/pdbbind-$vtst-stat.csv.
+* `model1.sh` tests model 1 and generates model1/set{1,2,3}/pdbbind-2007-{trn,tst}-stat.csv.
+* `model2.sh` trains and tests model 2 with a grid search of wNrot in [0.005 to 0.020] with a step size of 0.001, and generates model2/set{1,2,3}/tst-stat.csv.
+* `model3.sh` trains and tests models 3 and 4 with 10 seeds, and generates model{3,4}/set{1,2,3}/tst-stat.csv.
 * `maxerr.sh` finds the top 10 complexes with the largest absolute error between measured pKd and model 1 pKd and between measured pKd and model 4 pKd. Its output is saved to maxerr.csv.
-* `model2train.R` trains model 2 on model2/set{1,2}/$w/pdbbind-$v-trn-yxi.csv using multiple linear regression, and writes the intercept and coefficients to model2/set{1,2}/$w/pdbbind-$v.csv.
-* `model2test.R` tests model 2 on model2/set{1,2}/tst-yxi.csv, and writes the statistics to model2/set{1,2}/$w/pdbbind-$v-tst-stat.csv.
-* `couplelm.R` reads pdbbind-$v-trn-iyp.csv and writes pdbbind-$v-trn-coef.csv.
-* `iypplot.R` writes models{1,2,3,4,5}/set{1,2}/$w/pdbbind-$v-{trn,tst}-stat.csv and plots models{1,2,3,4,5}/set{1,2}/$w/pdbbind-$v-{trn,tst}-yp.tiff.
-* `varImpPlot.R` plots models{3,4,5}/set{1,2}/$w/pdbbind-$v-trn-varimpplot.tiff.
-* `statplot.R` plots model{2,3,4,5}/set{1,2}/tst-{rmse,sdev,pcor,scor,kcor}-{boxplot,median}.tiff, set{1,2}/pdbbind-$v-tst-{rmse,sdev,pcor,scor,kcor}-{boxplot,median}.tiff, set{1,2}/tst-{rmse,sdev,pcor,scor,kcor}-{boxplot,median}.tiff. This R script is self contained and requires no command line arguments. It is not called in any bash scripts and therefore should be called in the end.
+* `model0train.R` trains model 0 on model0/set{1,2,3}/pdbbind-$v-trn-yxi.csv using linear regression with NHA or MWT, and writes the intercept and coefficients to model0/set{1,2,3}/$w/pdbbind-$v.csv.
+* `model0test.R` tests model 0 on model0/set{1,2,3}/tst-yxi.csv, and writes the statistics to model0/set{1,2,3}/$w/pdbbind-$v-tst-stat.csv.
+* `model2train.R` trains model 2 on model2/set{1,2,3}/$w/pdbbind-$v-trn-yxi.csv using multiple linear regression, and writes the intercept and coefficients to model2/set{1,2,3}/$w/pdbbind-$v.csv.
+* `model2test.R` tests model 2 on model2/set{1,2,3}/tst-yxi.csv, and writes the statistics to model2/set{1,2,3}/$w/pdbbind-$v-tst-stat.csv.
+* `iypplot.R` writes models{0,1,2,3,4,5}/set{1,2,3}/$w/pdbbind-$v-{trn,tst}-stat.csv and plots models{0,1,2,3,4,5}/set{1,2,3}/$w/pdbbind-$v-{trn,tst}-yp.tiff.
+* `varImpPlot.R` plots models{3,4,5}/set{1,2,3}/$w/pdbbind-$v-trn-varimpplot.tiff.
+* `statplot.R` plots model{2,3,4,5}/set{1,2,3}/tst-{rmse,sdev,pcor,scor,kcor}-{boxplot,median}.tiff, set{1,2,3}/pdbbind-$v-tst-{rmse,sdev,pcor,scor,kcor}-{boxplot,median}.tiff, set{1,2,3}/tst-{rmse,sdev,pcor,scor,kcor}-{boxplot,median}.tiff. This R script is self contained and requires no command line arguments. It is not called in any bash scripts and therefore should be called in the end.
 
 [DOI: 10.1021/ci9000053]: http://dx.doi.org/10.1021/ci9000053

@@ -10,8 +10,8 @@ for m in 0; do
 				echo $w
 				mkdir -p $w
 				cd $w
-				../../mlrtrain.R $v $w
-				../../mlrtest.R $v $w tst
+				../../../model0train.R $v $w
+				../../../model0test.R $v $w tst
 				../../../iypplot.R $v tst
 				cd ..
 			done
