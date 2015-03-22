@@ -4,9 +4,9 @@ Several models for rescoring protein-ligand binding affinity are evaluated and c
 
 ## Models
 
-### Model 0 is a linear regression using number of heavy atoms (NHA) or molecular weight (MWT) of the ligand as the only feature.
+### Model 0
 
-Model 0
+Model 0 is a linear regression using number of heavy atoms (NHA) or molecular weight (MWT) of the ligand as the only feature.
 
 ### Model 1
 
