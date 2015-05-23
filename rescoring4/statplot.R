@@ -4,6 +4,7 @@ ns=2 # Number of datasets.
 nv=7 # Number of training sets per dataset.
 nc=5 # Number of performance measures.
 ntrn=c(2897,3809,4356,4449,5752,6719,6881) # 6973
+#ntrn=c(915,1462,1555,2857,3824,3986)
 statc=c("rmse","sdev","pcor","scor","kcor")
 statx=c("RMSE","SD","Rp","Rs","Rk")
 # Plot figures with y axis being the performance measure, x axis being the numbers of training complexes, and legends being the models.
@@ -21,7 +22,7 @@ for (s in 2:ns)
 #		ntrn[vi]=trn_stat["n"][1,1]
 		for (m in 1:nm)
 		{
-			tst_stat=read.csv(sprintf("model%d/set%s/pdbbind-%s-trn-%s-tst-stat.csv",m,s,ifelse(m==1,2007,v),ifelse(m==1,0,vi-1)))
+			tst_stat=read.csv(sprintf("model%d/set%s/pdbbind-%s-trn-%s-tst-stat.csv",m,s,ifelse(m==1,2007,v),ifelse(m==1,0,vi-1))) # vi+10 for the other ntrn with nv=6
 			for (ci in 1:nc)
 			{
 				box[m,vi,ci]=tst_stat[statc[ci]]
