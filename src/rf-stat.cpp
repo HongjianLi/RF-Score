@@ -19,6 +19,22 @@ float pearson(const vector<float>& y, const vector<float>& x)
 		xysum += x[i] * y[i];
 	}
 	return (n*xysum-x1sum*y1sum)/sqrt((n*x2sum-x1sum*x1sum)*(n*y2sum-y1sum*y1sum));
+	// Another calculation is suggested in a JCIM article titled "Beware of R2: Simple, Unambiguous Assessment of the Prediction Accuracy of QSAR and QSPR Models" by Alexander, D. L. J. and Tropsha, A. and Winkler, David A.
+/*	float y1sum = 0;
+	for (size_t i = 0; i < n; ++i)
+	{
+		y1sum += y[i];
+	}
+	float nu = 0, de = 0;
+	for (size_t i = 0; i < n; ++i)
+	{
+		const float ny = n * y[i];
+		const float nt = (ny - n * x[i]);
+		const float dt = (ny - y1sum);
+		nu += nt * nt;
+		de += dt * dt;
+	}
+	return sqrt(1 - nu / de);*/
 }
 
 float spearman(const vector<float>& y, const vector<float>& x)
