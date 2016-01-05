@@ -9,7 +9,7 @@ for v in 2002 2004 2007 2010 2012 2013; do
 		~/PDBbind/definebox/bin/definebox ${c}_ligand.mol2 > box.conf
 		mkdir -p log out
 		vina --config box.conf --receptor ${c}_protein.pdbqt --ligand ${c}_ligand.pdbqt --log log/${c}_ligand.txt --out out/${c}_ligand.pdbqt
-		~/idock/utilities/rmsd ${c}_ligand.pdbqt out/${c}_ligand.pdbqt > vina.rmsd
+		rmsdpdbqt ${c}_ligand.pdbqt out/${c}_ligand.pdbqt > vina.rmsd
 		vina_split --input out/${c}_ligand.pdbqt
 		echo 0 > vina-scheme-1.txt
 		echo 1 > vina-scheme-2.txt
