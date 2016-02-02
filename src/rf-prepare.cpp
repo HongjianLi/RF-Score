@@ -78,7 +78,7 @@ int main(int argc, char* argv[])
 	const string path = argv[1];
 	const string root = path.substr(0, path.find_last_of("/\\") + 1);
 	const size_t model = argc == 2 ? 4 : stoul(argv[2]); // model can be 2, 3 or 4.
-	const string scheme = argc <= 3 ? "1" : argv[3]; // scheme can be 1, 2, 3, 4, 5 or 6.
+	const string scheme = argc <= 3 ? "1" : argv[3]; // scheme can be 0, 1, 2, 3, 4, 5 or 6.
 	const size_t nf = (model == 4 ? 36 : 0) + 10;
 	const size_t np = (scheme == "5" ? 9 : (scheme == "6" ? 2 : 1));
 

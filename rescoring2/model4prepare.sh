@@ -17,7 +17,7 @@ for m in 2 3 4; do
 		cd set$s
 		echo set$s
 		for vi in {0..4}; do
-			for trn in {1..6}; do
+			for trn in {0..6}; do
 				if [[ $vi == 0 ]]; then
 					echo tst-$trn-yxi.csv
 					rf-prepare $pdbbind/v${v[$s,$vi]}/rescoring-2-set-$s-tst-iy.csv $m $trn > tst-$trn-yxi.csv

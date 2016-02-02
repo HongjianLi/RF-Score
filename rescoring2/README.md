@@ -80,6 +80,10 @@ Their intersections are as follows:
 
 In the schemes below, different poses are chosen to calculate the features.
 
+### Scheme 0
+
+The chosen pose is the docked pose with the largest RMSD.
+
 ### Scheme 1
 
 The chosen pose is the crystal pose.
@@ -94,7 +98,7 @@ The chosen pose is the docked pose with the lowest RMSD.
 
 ### Scheme 4
 
-The chosen pose is the docked pose with a Vina score closest the measured binding affinity of that complex.
+The chosen pose is the docked pose with a Vina score closest to the measured binding affinity of that complex.
 
 ### Scheme 5
 
@@ -109,7 +113,7 @@ The chosen poses are the 2 docked poses with the lowest and the second lowest Vi
 By combining the 4 models and the 6 schemes, 32 combinations are evaluated:
 
 * 1 models (1) \* 1 training schemes (1) \* 2 test schemes (1, 2) = 2 combinations
-* 3 models (2, 3, 4) \* 4 training schemes (1, 2, 3, 4) \* 2 test schemes (1, 2) = 24 combinations
+* 3 models (2, 3, 4) \* 4 training schemes (0, 1, 2, 3, 4) \* 2 test schemes (1, 2) = 30 combinations
 * 3 models (2, 3, 4) \* 1 training schemes (5) \* 1 test schemes (5) = 3 combinations
 * 3 models (2, 3, 4) \* 1 training schemes (6) \* 1 test schemes (6) = 3 combinations
 
