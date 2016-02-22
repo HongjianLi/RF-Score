@@ -20,8 +20,7 @@ for s in 1 2; do
 				for c in $(cut -d, -f1 rescoring-2-set-$s-tst-iy.csv)
 				do
 					cd $c
-					n=$(wc -l < vina.rmsd)
-					seq 1 $n | paste - vina.rmsd | sort -k2nr | head -1 | cut -f1 > vina-scheme-$trn.txt
+					nl -nln vina.rmsd | sort -k2nr | head -1 | cut -f1 > vina-scheme-$trn.txt
 					cd ..
 				done
 			else
@@ -29,8 +28,7 @@ for s in 1 2; do
 				for c in $(cut -d, -f1 rescoring-2-set-$s-trn-iy.csv)
 				do
 					cd $c
-					n=$(wc -l < vina.rmsd)
-					seq 1 $n | paste - vina.rmsd | sort -k2nr | head -1 | cut -f1 > vina-scheme-$trn.txt
+					nl -nln vina.rmsd | sort -k2nr | head -1 | cut -f1 > vina-scheme-$trn.txt
 					cd ..
 				done
 			fi
