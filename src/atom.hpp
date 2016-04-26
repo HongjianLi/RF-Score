@@ -8,7 +8,7 @@ using namespace std;
 class atom
 {
 private:
-	static const size_t n = 30;
+	static const size_t n = 33;
 	static const array<string, n> ad_strings;
 	static const array<float, n> ad_covalent_radii;
 	static const array<size_t, n> ad_to_xs;
