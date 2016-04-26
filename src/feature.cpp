@@ -3,7 +3,7 @@
 
 vector<float> feature(const receptor& rec, const ligand& lig, const size_t model)
 {
-	static const scoring_function sf;
+	static const scoring_function sf{};
 	vector<float> v(model == 4 ? 47 : (model == 3 ? 11 : 12)); // 36 RF-Score features, 5 Vina features from e_inter, 5 Vina features from e_intra, and 1 Vina feature from Nrot.
 	const size_t offsetr = model == 4 ? 36 : 0;
 	for (const auto& l : lig)
