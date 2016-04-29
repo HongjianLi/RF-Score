@@ -32,9 +32,6 @@ void receptor::load(ifstream& ifs)
 			// Parse the ATOM/HETATM line.
 			atom a(line);
 
-			// Harmonize a unsupported atom type to carbon.
-			if (a.ad_unsupported()) a.ad = 2;
-
 			// Skip non-polar hydrogens.
 			if (a.is_nonpolar_hydrogen()) continue;
 

@@ -160,6 +160,14 @@ atom::atom(const string& line) :
 	xs(ad_to_xs[ad]),
 	rf(ad_to_rf[ad])
 {
+	// Harmonize a unsupported atom type to a metal such as Mg.
+	if (ad_unsupported())
+	{
+		ad = 17;
+		xs = ad_to_xs[ad];
+		rf = ad_to_rf[ad];
+	}
+
 	coord[0] = stof(line.substr(30, 8));
 	coord[1] = stof(line.substr(38, 8));
 	coord[2] = stof(line.substr(46, 8));
