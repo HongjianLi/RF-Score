@@ -23,6 +23,7 @@ int main(int argc, char* argv[])
 	else
 	{
 		cout << "6.6	7.6	8.6	16.6	6.7	7.7	8.7	16.7	6.8	7.8	8.8	16.8	6.16	7.16	8.16	16.16	6.15	7.15	8.15	16.15	6.9	7.9	8.9	16.9	6.17	7.17	8.17	16.17	6.35	7.35	8.35	16.35	6.53	7.53	8.53	16.53	gauss1	gauss2	repulsion	hydrophobic	hydrogenbonding	flexibility" << endl;
+//		cout << "6.6	7.6	8.6	16.6	6.7	7.7	8.7	16.7	6.8	7.8	8.8	16.8	6.16	7.16	8.16	16.16	6.15	7.15	8.15	16.15	6.9	7.9	8.9	16.9	6.17	7.17	8.17	16.17	6.35	7.35	8.35	16.35	6.53	7.53	8.53	16.53	gauss1_inter	gauss2_inter	repulsion_inter	hydrophobic_inter	hydrogenbonding_inter	gauss1_intra	gauss2_intra	repulsion_intra	hydrophobic_intra	hydrogenbonding_intra	flexibility" << endl;
 	}
 
 	// Load a receptor and multiple conformations of a ligand to calculate RF-Score features and Vina terms.
@@ -45,6 +46,7 @@ int main(int argc, char* argv[])
 			x[i] = v[i];
 		}
 		x[x.size() - 1] = v.back();
+//		const auto& x = v;
 
 		if (score)
 		{
