@@ -27,7 +27,7 @@ bin/rf-inspect: obj/random_forest_test.o obj/rf-inspect.o
 	${CC} -o $@ $^
 
 obj/%.o: src/%.cpp
-	${CC} -o $@ $< -c -std=c++11
+	${CC} -o $@ $< -c -std=c++14
 
 clean:
 	rm -f bin/rf-prepare bin/rf-train bin/rf-test bin/rf-stat bin/rf-extract bin/rf-predict bin/rf-score bin/rf-inspect obj/*
