@@ -4,6 +4,7 @@
 #include <vector>
 #include <numeric>
 #include <algorithm>
+#include <cmath>
 using namespace std;
 
 float pearson(const vector<float>& y, const vector<float>& x)
